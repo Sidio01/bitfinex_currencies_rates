@@ -1,0 +1,6 @@
+__pycache__
+build
+dist
+venv
+bitfinex_currency.spec
+dist.zip
