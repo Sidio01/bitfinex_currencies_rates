@@ -3,4 +3,7 @@ build
 dist
 venv
 bitfinex_currency.spec
+bitfinex_currencies_rates.spec
+*.xls
+*.xlsx
 dist.zip
