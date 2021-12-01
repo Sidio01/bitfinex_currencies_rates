@@ -7,3 +7,4 @@ bitfinex_currencies_rates.spec
 *.xls
 *.xlsx
 dist.zip
+.pyinstaller

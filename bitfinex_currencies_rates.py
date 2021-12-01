@@ -12,7 +12,11 @@ list_of_columns = ['SYMBOL', 'BID', 'BID_SIZE', 'ASK', 'ASK_SIZE', 'DAILY_CHANGE
 today = datetime.datetime.now()
 
 url_bitfinex = "https://api-pub.bitfinex.com/v2/tickers?symbols=ALL"
-url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req={today.day}/{today.month}/{today.year}"
+
+if today.day < 10:
+    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req=0{today.day}/{today.month}/{today.year}"
+else:
+    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req=0{today.day}/{today.month}/{today.year}"
 
 payload = {}
 headers = {}
