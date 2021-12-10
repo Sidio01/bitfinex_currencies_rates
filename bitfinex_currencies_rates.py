@@ -16,7 +16,7 @@ url_bitfinex = "https://api-pub.bitfinex.com/v2/tickers?symbols=ALL"
 if today.day < 10:
     url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req=0{today.day}/{today.month}/{today.year}"
 else:
-    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req=0{today.day}/{today.month}/{today.year}"
+    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req={today.day}/{today.month}/{today.year}"
 
 payload = {}
 headers = {}
