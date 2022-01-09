@@ -12,11 +12,7 @@ list_of_columns = ['SYMBOL', 'BID', 'BID_SIZE', 'ASK', 'ASK_SIZE', 'DAILY_CHANGE
 today = datetime.datetime.now()
 
 url_bitfinex = "https://api-pub.bitfinex.com/v2/tickers?symbols=ALL"
-
-if today.day < 10:
-    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req=0{today.day}/{today.month}/{today.year}"
-else:
-    url_cbr = f"http://www.cbr.ru/scripts/XML_daily.asp?date_req={today.day}/{today.month}/{today.year}"
+url_cbr = f'http://www.cbr.ru/scripts/XML_daily.asp?date_req={today.strftime("%d")}/{today.strftime("%m")}/{today.strftime("%Y")}'
 
 payload = {}
 headers = {}
@@ -32,17 +28,17 @@ for child in root:
         for c in child:
             if c.tag == "Value":
                 usd_rate = ["USD", "-", "-", c.text, "-", "-", "-", "-",
-                            "-", "-", "-", f"{today.year}-{today.month}-{today.day}"]
+                            "-", "-", "-", root.attrib["Date"]]
                 list_of_currencies.append(usd_rate)
 
 for i, pair in enumerate(response_bitfinex.json(), 1):
     if len(pair) > 11:
         continue
-    if pair[0][-3:] in ['BTC', 'ETH', 'UST', 'XCH', 'EOS', 'EUR', 'JPY', 'GBP', 'BBB']:
+    if pair[0][-3:] in ['BTC', 'ETH', 'UST', 'XCH', 'EOS', 'EUR', 'JPY', 'GBP', 'BBB', 'MIM']:
         continue
-    if pair[0][-4:] in ['CNHT']:
+    if pair[0][-4:] in ['CNHT', 'XAUT']:
         continue
-    if pair[0][-5:] in ['USTF0', 'BTCF0']:
+    if pair[0][-5:] in ['USTF0', 'BTCF0', 'EUTF0']:
         continue
     if pair[0][1:] in ['TESTBTC:TESTUSD', 'TESTBTC:TESTUSDT', 'TESTBTCF0:TESTUSDTF0']:
         continue
